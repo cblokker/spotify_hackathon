@@ -1,4 +1,15 @@
 // Creates our Leap Controller
+
+
+function convertToRange(val, in_range, out_range) {
+	// ranges are 2 value arrays, in min + max, out min + max
+	var in_min = in_range[0], in_max = in_range[1]
+	var out_min = out_range[0], out_max = out_range[1];
+	return (val - in_min) * ( out_max - out_min ) / ( in_max - in_min ) + out_min;
+}
+
+
+
 var controller = new Leap.Controller();
 
 
