@@ -1,18 +1,23 @@
 console.log('hawo')
 
+AudioContext = new AudioContext
 
 function synthNote(freq) {
 	this.freq = freq;
 	this.osc;
+	this.gain;
 	this.isPlaying = false;
 
 	
 	var _this = this;
 
 	this.makeMeAnOsc = function() {
-		_this.osc = CONTEXT.createOscillator();
+		_this.osc = AudioContext.createOscillator();
+		_this.gain = AudioContext.createGain()
 		_this.osc.frequency.value = _this.freq;
+		_this.osc.connect(_this.gain)
 	}
+
 	this.start = function() {
 		_this.osc.start(0);
 	}
@@ -20,22 +25,19 @@ function synthNote(freq) {
 		_this.osc.disconnect();	
 	}
 	this.connect = function(node){
-		_this.osc.connect(node);
+		_this.gain.connect(node);
 	}
 	this.disconnect = function(){
-		_this.osc.disconnect();
+		_this.gain.disconnect();
 	}
-	// this.updateFreq = function(val) {
-	// 	_this.freq = val;
-	// 	_this.osc.frequency.value = val;
-	// }
+
 }
 
 
 function analyzeDest(synthNotes){
 	
 	this.notes = synthNotes;
-	this.destination = CONTEXT.destination
+	this.destination = AudioContext.destination
 
 	var _this = this;
  
@@ -52,7 +54,8 @@ function analyzeDest(synthNotes){
 	}
 	this.stop = function(index) {
 		note = _this.notes[index];
-		note.disconnect();
+		_this.updateGain(0, index);
+		window.setTimeout(note.disconnect, 7);
 		note.isPlaying = false;
 	}
 	this.connectToOut = function(note){
@@ -62,16 +65,10 @@ function analyzeDest(synthNotes){
 		var note = _this.notes[index]
 		note.osc.frequency.value = val;
 	}
-	// this.toggle = function(index) {
-	// 	var note = _this.notes[index];
-	// 	if (note.isPlaying){
-	// 		_this.stop(note);
-	// 		note.isPlaying = !(note.isPlaying);
-	// 	} else {
-	// 		_this.play(note);
-	// 		note.isPlaying = !(note.isPlaying);
-	// 	}
-	// }
+	this.updateGain = function(val, index) {
+		var note = _this.notes[index]
+		note.gain.gain.value = val;
+	}
 }
 
 
