@@ -15,7 +15,6 @@ function convertToRange(val, in_range, out_range) {
 
 
 var controller = new Leap.Controller();
-
 var note = new synthNote(200);
 note.makeMeAnOsc();
 var synth = new playback([note]);
@@ -52,26 +51,31 @@ controller.on('frame', function(frame) {
     }
 });
 
-// var controller = Leap.loop({enableGestures: true}, function(frame){
-//   if(frame.valid && frame.gestures.length > 0){
-//     frame.gestures.forEach(function(gesture){
-//         switch (gesture.type){
-//           case "circle":
-//               console.log("Circle Gesture");
-//               break;
-//           case "keyTap":
-//               console.log("Key Tap Gesture");
-//               break;
-//           case "screenTap":
-//               console.log("Screen Tap Gesture");
-//               break;
-//           case "swipe":
-//               console.log("Swipe Gesture");
-//               break;
-//         }
-//     });
-//   }
-// });
+var sample = new Sample('audios/haha1.wav');
+sample.loadBuffer();
+
+
+var controller = Leap.loop({enableGestures: true}, function(frame){
+  if(frame.valid && frame.gestures.length > 0){
+    frame.gestures.forEach(function(gesture){
+        switch (gesture.type) {
+            case "circle":
+                console.log("Circle Gesture");
+                break;
+            case "keyTap":
+                console.log("Key Tap Gesture");
+                break;
+            case "screenTap":
+                console.log("Screen Tap Gesture");
+                break;
+            case "swipe":
+                console.log('swipe');
+                sample.play(0);
+                break;
+        }
+    });
+  }
+});
 
 
 
