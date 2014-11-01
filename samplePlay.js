@@ -6,6 +6,8 @@ function Sample(urlPath, name) {
 }
 
 
+
+
 Sample.prototype = {
     // prepSamplePatterns : function() {
     //  var _this = this;
