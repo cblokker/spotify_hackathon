@@ -21,7 +21,7 @@ visualizeHand = function(controller) {
         new playback([note3])
     ]
 
-    var sample = new Sample('audios/Laugh-Evil1.mp3');
+    var sample = new Sample('/audios/Laugh-Evil1.mp3');
     sample.loadBuffer();
 
     function convertToRange(val, in_range, out_range) {
@@ -105,6 +105,7 @@ visualizeHand = function(controller) {
     controller.on('frame', function(frame) {
         handGestureNoises(frame);
         synthHands(frame);
+        window.composer.render();
     });
 
     //  Set up hand model
