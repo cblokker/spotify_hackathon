@@ -15,11 +15,18 @@ var controller = new Leap.Controller();
 var note = new synthNote(200);
 note.makeMeAnOsc();
 var synth = new analyzeDest([note]);
-synth.play(0);
+
+
 
 
 // Tells the controller what to do every time it sees a frame
-controller.on('frame', function(frame) {    
+controller.on('frame', function(frame) {
+    if (frame.hands.length == 0) {
+        synth.stop(0);
+    } else {
+        synth.play(0);
+    }
+
     for (var i = 0; i < frame.hands.length; i++) {
         var hand = frame.hands[i],
             handPos = hand.palmPosition,
@@ -27,16 +34,17 @@ controller.on('frame', function(frame) {
             handRoll = hand.roll(),
             handYaw = hand.yaw();
 
-        // console.log(handPos[1]);
+        var freq = convertToRange(handPos[1], [0, 400], [200, 3000])
+        var gain = convertToRange(handPos[2], [-200, 300], [1, 0])
 
-        freq = (handPos[1] * 1.5);
-        console.log("handPos[1]: " + handPos[1]);
-        console.log("freq:" + freq);
+        console.log(handPos[2]);
 
+        synth.updateGain(gain, 0);
         synth.updateFreq(freq, 0);
-        
     }
 });
+
+
 
 
 
