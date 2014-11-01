@@ -33,14 +33,31 @@ function synthNote(freq) {
 
 }
 
-
-var verbImpulse = new Sample('audios/stone.wav');
-verbImpulse.loadBuffer();
-
 var convolver = AudioContext.createConvolver();
-convolver.buffer = verbImpulse.decodedBuffer;
+
+document.addEventListener('DOMContentLoaded', function(){
+ //  var _this = this; 
+ //  var request = new XMLHttpRequest();
+ //  request.open('GET', 'audios/stone.wav', true);
+ //  request.responseType = 'arraybuffer';
+
+ //  // Decode asynchronously
+ //  request.onload = function () {
+	//   convolver.buffer = AudioContext.createBuffer(request.response, false);
+	// }  
+	// request.send();
+	
 
 
+	verbImpulse = new Sample('audios/stone.wav');
+	verbImpulse.loadBuffer();
+  setTimeout(function() {
+      convolver.buffer = verbImpulse.decodedBuffer;
+  }, 1000);
+
+
+
+});
 
 
 function playback(synthNotes){
@@ -68,8 +85,10 @@ function playback(synthNotes){
 		note.isPlaying = false;
 	}
 	this.connectToOut = function(note){
+		console.log("convolver: " + convolver);
+		console.log("convolver buffer: " + convolver.buffer);
 		note.connect(convolver);
-		convolver.connect(_this.destination)
+		convolver.connect(AudioContext.destination)
 	}
 	this.updateFreq = function(val, index) {
 		var note = _this.notes[index];
