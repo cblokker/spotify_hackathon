@@ -25,6 +25,10 @@ function synthNote(freq) {
 	this.disconnect = function(){
 		_this.osc.disconnect();
 	}
+	// this.updateFreq = function(val) {
+	// 	_this.freq = val;
+	// 	_this.osc.frequency.value = val;
+	// }
 }
 
 
@@ -53,6 +57,10 @@ function analyzeDest(synthNotes){
 	}
 	this.connectToOut = function(note){
 		note.connect(_this.destination);
+	}
+	this.updateFreq = function(val, index) {
+		var note = _this.notes[index]
+		note.osc.frequency.value = val;
 	}
 	// this.toggle = function(index) {
 	// 	var note = _this.notes[index];

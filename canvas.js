@@ -14,10 +14,13 @@ var height = canvas.height;
 var controller = new Leap.Controller();
 
 CONTEXT = new AudioContext();
+
 var note = new synthNote(200);
-var osc = note.makeMeAnOsc();
+note.makeMeAnOsc();
 var synth = new analyzeDest([note]);
 synth.play(0);
+
+
 
 // The leapToScene function takes a position in leap space 
 // and converts it to the space in the canvas.
@@ -55,6 +58,7 @@ function leapToScene(frame, leapPos) {
     return [x, -y, z];
 }
 
+
 // Tells the controller what to do every time it sees a frame
 controller.on('frame', function(frame) {
     //Clears the canvas so we are not drawing multiple frames   
@@ -68,15 +72,19 @@ controller.on('frame', function(frame) {
             handPos = leapToScene(frame, hand.palmPosition),
             handPitch = hand.pitch(),
             handRoll = hand.roll(),
-            handYaw = hand.yaw();
+            handYaw = hand.yaw(),
+            freq = (handPos[1] + 300) * 3;
 
-        console.log(handPos);
-        console.log(handPitch);
-        console.log(handRoll);
-        console.log(handYaw);
+        console.log(note);
+        synth.updateFreq(freq, 0);
+        
+        
+        // console.log(handPos);
+        // console.log(handPitch);
+        // console.log(handRoll);
+        // console.log(handYaw);
 
-            handColor = Math.floor(Math.abs(handPitch * 200));
-
+        handColor = Math.floor(Math.abs(handPitch * 200));
         c.fillStyle = 'rgb(' + handColor + ', 100, 0)';
         
         // Creating the path for the hand circle
