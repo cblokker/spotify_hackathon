@@ -21,6 +21,7 @@ var sample = new Sample('audios/Laugh-Evil1.mp3');
 var controller = Leap.loop({enableGestures: true}, function(frame) {
     handGestureNoises(frame);
     synthHands(frame);
+    console.log(frame.fingers.length);
 });
 
 
@@ -36,6 +37,8 @@ function synthHands(frame) {
     if (frame.hands.length == 0) {
         synthArray[0].stop(0);
         synthArray[1].stop(0);
+    } else if (frame.hands.length == 1) {
+        synthArray[0].play(0);
     } else {
         synthArray[0].play(0);
         synthArray[1].play(0);
@@ -50,7 +53,7 @@ function synthHands(frame) {
             handYaw = hand.yaw(),
 
             freq = convertToRange(handPos[1], [0, 400], [200, 3000]),
-            gain = convertToRange(handPos[2], [-200, 300], [1, 0]);
+            gain = convertToRange(handPos[2], [-200, 300], [0, 0.5]);
 
         synthArray[i].updateGain(gain, 0);
         synthArray[i].updateFreq(freq, 0);
