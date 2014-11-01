@@ -114,7 +114,6 @@ function playback(synthNotes){
 		var note = _this.notes[index];
 		note.osc.type = 'sine';
 	}
-	
 }
 
 

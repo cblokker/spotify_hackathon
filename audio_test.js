@@ -14,14 +14,19 @@ var synthArray = [
   new playback([note3])
 ]
 
-var sample = new Sample('audios/Laugh-Evil1.mp3');
-    sample.loadBuffer();
+var sample1 = new Sample('audios/Laugh-Evil1.mp3');
+    sample1.loadBuffer();
+
+var sample2 = new Sample('audios/haha1.wav');
+    sample2.loadBuffer();
 
 
 var controller = Leap.loop({enableGestures: true}, function(frame) {
     handGestureNoises(frame);
     synthHands(frame);
     console.log(frame.fingers.length);
+
+
 });
 
 
@@ -73,6 +78,7 @@ function handGestureNoises(frame) {
             switch (gesture.type){
               case "circle":
                   console.log("Circle Gesture");
+                  sample2.play(0);
                   break;
               case "keyTap":
                   console.log("Key Tap Gesture");
@@ -82,7 +88,7 @@ function handGestureNoises(frame) {
                   break;
               case "swipe":
                   console.log("Swipe Gesture");
-                  sample.play(0);
+                  sample1.play(0);
                   break;
             }
         });
