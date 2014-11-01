@@ -1,6 +1,9 @@
 body {
-background: black;
+    background: black;
 }
 canvas {
-background: black;
+    background: black;
+}
+#connect-leap {
+	display: none !important;
 }
