@@ -8,34 +8,30 @@ function samplePlay(buffer, when) {
 
 
 
-function Template(params) {
-	this.samplePatterns = params.samplePatterns;
-	this.tempo = params.tempo;
-}
 
-function SamplePattern(urlPath, name, pattern) {
+function Sample(urlPath, name) {
 	this.urlPath = urlPath;
 	this.name = name;
-	this.pattern = pattern;
 	this.decodedBuffer = [];
 }
 
-Template.prototype = {
+Sample.prototype = {
 	// prepSamplePatterns : function() {
 	// 	var _this = this;
 	// 	for (var i = 0; i < _this.samplePatterns.length; i++) {
 	// 		_this.prepOneSP( _this.samplePatterns[i]) 
 	// 	}
 	// },
-	prepOneSP : function(samplePattern) {
+	loadBuffer : function() {
+		var _this = this; 
 		var request = new XMLHttpRequest();
-	  request.open('GET', samplePattern.urlPath, true);
+	  request.open('GET', _this.urlPath, true);
 	  request.responseType = 'arraybuffer';
 
 	  // Decode asynchronously
 	  request.onload = function() {
-	    Context.decodeAudioData(request.response, function(buffer) {
-	      samplePattern.decodedBuffer = buffer;
+	    AudioContext.decodeAudioData(request.response, function(buffer) {
+	      _this.decodedBuffer = buffer;
 	    }, function(){ console.log('oh shit')});
 	  }
 	  request.send();
