@@ -6,6 +6,8 @@ function Sample(urlPath, name) {
 }
 
 
+
+
 Sample.prototype = {
     // prepSamplePatterns : function() {
     //  var _this = this;
@@ -14,6 +16,7 @@ Sample.prototype = {
     //  }
     // },
     loadBuffer : function() {
+
         var _this = this; 
         var request = new XMLHttpRequest();
         request.open('GET', _this.urlPath, true);
