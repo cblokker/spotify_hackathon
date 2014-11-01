@@ -15,8 +15,8 @@ Sample.prototype = {
     //      _this.prepOneSP( _this.samplePatterns[i]) 
     //  }
     // },
-    loadBuffer : function(callback) {
-        //callback();
+    loadBuffer : function() {
+
         var _this = this; 
         var request = new XMLHttpRequest();
         request.open('GET', _this.urlPath, true);
