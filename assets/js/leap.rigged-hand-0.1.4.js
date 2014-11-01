@@ -298,6 +298,7 @@ var _sortBy = function (obj, iterator, context) {
     };
   }
 
+  var glitchPass;
   initScene = function(element) {
     var pointLight, scope;
     scope = this;
@@ -329,6 +330,20 @@ var _sortBy = function (obj, iterator, context) {
       }, false);
     }
     scope.scene.add(scope.camera);
+
+
+    // postprocessing
+
+    composer = new THREE.EffectComposer( scope.renderer );
+    composer.addPass( new THREE.RenderPass( scope.scene, scope.camera ) );
+
+    glitchPass = new THREE.GlitchPass();
+    glitchPass.renderToScreen = true;
+    composer.addPass( glitchPass );
+    window.composer = composer;
+
+
+
     return scope.renderer.render(scope.scene, scope.camera);
   };
 

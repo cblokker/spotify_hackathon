@@ -3,7 +3,19 @@
 
 <head>
     <title>Haunted Hands</title>
-    <script src="assets/js/three.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.js"></script>
+
+
+    <script src="http://threejs.org/examples/js/shaders/CopyShader.js"></script>
+    <script src="http://threejs.org/examples/js/shaders/DigitalGlitch.js"></script>
+
+    <script src="http://threejs.org/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="http://threejs.org/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="http://threejs.org/examples/js/postprocessing/MaskPass.js"></script>
+    <script src="http://threejs.org/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="http://threejs.org/examples/js/postprocessing/GlitchPass.js"></script>
+
+
     <script src="assets/js/leap-0.6.2.js"></script>
     <script src="assets/js/leap-plugins-0.1.6.1.js"></script>
     <script src="assets/js/leap.rigged-hand-0.1.4.js"></script>
@@ -11,8 +23,14 @@
 </head>
 
 <body>
+    <img id="fog" src="assets/fog.png" style="z-index:9; position:absolute; width: 200%;left:0"/>
     <script src="synthModels.js"></script>
     <script src="/hauntedhand-vis.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <script>
+    console.log($("#fog").css('left'));
+    </script>
 </body>
 
 </html>
