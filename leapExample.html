@@ -1,44 +1,47 @@
 <!DOCTYPE html><html><head>
-    <title>Grab Strength Demo</title>
-    <script src="assets/js/three.js"></script>
-    <script src="assets/js/leap-0.6.2.js"></script>
-    <script src="assets/js/leap-plugins-0.1.6.1.js"></script>
-    <script src="assets/js/leap.rigged-hand-0.1.4.js"></script>
+<title>Grab Strength Demo</title>
+<script src="assets/js/three.js"></script>
+<script src="assets/js/leap-0.6.2.js"></script>
+<script src="assets/js/leap-plugins-0.1.6.1.js"></script>
+<script src="assets/js/leap.rigged-hand-0.1.4.js"></script>
+<link type="text/css" rel="stylesheet" href="css/style.css"></link>
 
 
-    <style class="codepen">
-    body{
-      font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-    }
-    #output{
-      font-size: 66px;
-      color: #005d98;
-      text-align: left;
-      position: fixed;
-      bottom: 18px;
-    }
-    
-    #progress {
-      background: #005d98;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      height: 16px;
-      width: 0%;
-    }
-    img#connect-leap{
-      /* this can be removed with leapjs-plugins 0.1.4.1 */
-      max-width: 100%;
-    }
-    </style>
+<style class="codepen">
+body{
+  font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+}
+#output{
+  font-size: 66px;
+  color: #005d98;
+  text-align: left;
+  position: fixed;
+  bottom: 18px;
+}
 
-  </head>
+#progress {
+  background: #005d98;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 16px;
+  width: 0%;
+}
+img#connect-leap{
+  /* this can be removed with leapjs-plugins 0.1.4.1 */
+  max-width: 100%;
+}
+</style>
 
-  <body>
-    <div id="output"></div>
-    <div id="progress"></div>
-  
+</head>
 
-  <script src="/grabstrength.js"> </script>
+<body>
+<div id="output"></div>
+<div id="progress"></div>
 
-</body><script class="jsdom" src="assets/js/jquery.js"></script></html>
+
+<script src="/grabstrength.js"> </script>
+
+<script class="jsdom" src="assets/js/jquery.js"></script>
+</body>
+</html>

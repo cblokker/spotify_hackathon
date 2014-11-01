@@ -53,20 +53,18 @@ visualizeHand = function(controller){
 
 
   controller.use('riggedHand', {
-    scale: 1.3,
+    scale: 1,
     boneColors: function (boneMesh, leapHand){
-      if ((boneMesh.name.indexOf('Finger_') == 0) ) {
         return {
-          hue: 0.564,
-          saturation: leapHand.grabStrength,
-          lightness: 0.5
+          hue: .5,
+          saturation: 0,
+          lightness: 1
         }
-      }
     }
   });
 
   var camera = controller.plugins.riggedHand.camera;  
-  camera.position.set(0,20,-35);
+  camera.position.set(0,20,-25);
   camera.lookAt(new THREE.Vector3(0,3,0));
 };
 visualizeHand(Leap.loopController);
