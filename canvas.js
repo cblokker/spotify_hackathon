@@ -13,6 +13,12 @@ var height = canvas.height;
 // Creates our Leap Controller
 var controller = new Leap.Controller();
 
+CONTEXT = new AudioContext();
+var note = new synthNote(200);
+var osc = note.makeMeAnOsc();
+var synth = new analyzeDest([note]);
+synth.play(0);
+
 // The leapToScene function takes a position in leap space 
 // and converts it to the space in the canvas.
 // It does this by using the interaction box, in order to 
@@ -53,11 +59,11 @@ function leapToScene(frame, leapPos) {
 controller.on('frame', function(frame) {
     //Clears the canvas so we are not drawing multiple frames   
     c.clearRect(0, 0, width, height);
+
     
     // First we loop through all of the hands that the frame sees
     for (var i = 0; i < frame.hands.length; i++) {
         // For each hand we define it
-        // console.log(frame.hands);
         var hand = frame.hands[i],
             handPos = leapToScene(frame, hand.palmPosition),
             handPitch = hand.pitch(),
