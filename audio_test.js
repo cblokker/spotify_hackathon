@@ -12,6 +12,15 @@ function convertToRange(val, in_range, out_range) {
 }
 
 
+
+
+var controller = new Leap.Controller();
+
+var note = new synthNote(200);
+note.makeMeAnOsc();
+var synth = new playback([note]);
+
+
 // Tells the controller what to do every time it sees a frame
 controller.on('frame', function(frame) {
     if (frame.hands.length == 0) {

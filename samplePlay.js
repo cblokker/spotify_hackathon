@@ -2,7 +2,7 @@
 function samplePlay(buffer, when) {
   var source = AudioContext.createBufferSource(); 
   source.buffer = buffer;                    
-  source.connect(Context.destination);       
+  source.connect(AudioContext.destination);       
   source.start(when);
 }
 

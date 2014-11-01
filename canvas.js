@@ -17,8 +17,8 @@ var controller = new Leap.Controller();
 
 var note = new synthNote(200);
 note.makeMeAnOsc();
-var synth = new analyzeDest([note]);
-synth.play(0);
+var synth = new playback([note]);
+// synth.play(0);
 
 
 
