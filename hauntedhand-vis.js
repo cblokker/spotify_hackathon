@@ -56,8 +56,6 @@ visualizeHand = function(controller) {
             var freq = convertToRange(handPos[1], [0, 400], [200, 3000]);
             var gain = convertToRange(handPos[2], [-200, 300], [1, 0]);
 
-            console.log(handPos[0]);
-
             synth.updateGain(gain, 0);
             synth.updateFreq(freq, 0);
 
