@@ -13,7 +13,7 @@ var height = canvas.height;
 // Creates our Leap Controller
 var controller = new Leap.Controller();
 
-CONTEXT = new AudioContext();
+// CONTEXT = new AudioContext();
 
 var note = new synthNote(200);
 note.makeMeAnOsc();
@@ -73,11 +73,10 @@ controller.on('frame', function(frame) {
             handPitch = hand.pitch(),
             handRoll = hand.roll(),
             handYaw = hand.yaw(),
+
             freq = (handPos[1] + 300) * 3;
 
-        console.log(note);
         synth.updateFreq(freq, 0);
-        
         
         // console.log(handPos);
         // console.log(handPitch);
