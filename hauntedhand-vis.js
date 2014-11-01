@@ -19,7 +19,7 @@ visualizeHand = function(controller) {
 
     controller.use('playback', {
         // This is a compressed JSON file of preprecorded frame data
-        recording: 'leap-playback-recording-90fps.json',
+        recording: 'playback-recording.lz',
         // How long, in ms, between repeating the recording.
         timeBetweenLoops: 1000,
         pauseOnHand: true
