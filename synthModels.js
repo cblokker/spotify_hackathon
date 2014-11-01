@@ -6,16 +6,18 @@ function synthNote(freq) {
 	this.freq = freq;
 	this.osc;
 	this.gain;
+	this.filter = 'allpass';
 	this.isPlaying = false;
 
-	
 	var _this = this;
 
 	this.makeMeAnOsc = function() {
 		_this.osc = AudioContext.createOscillator();
-		_this.gain = AudioContext.createGain()
+		_this.gain = AudioContext.createGain();
+		_this.filter = AudioContext.createBiquadFilter();
 		_this.osc.frequency.value = _this.freq;
-		_this.osc.connect(_this.gain)
+		_this.osc.connect(_this.gain);
+		_this.gain.connect(_this.filter);
 	}
 
 	this.start = function() {
@@ -25,7 +27,7 @@ function synthNote(freq) {
 		_this.osc.disconnect();	
 	}
 	this.connect = function(node){
-		_this.gain.connect(node);
+		_this.filter.connect(node);
 	}
 	this.disconnect = function(){
 		_this.gain.disconnect();
@@ -47,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function(){
 	// }  
 	// request.send();
 	
-
 
 	verbImpulse = new Sample('audios/stone.wav');
 	verbImpulse.loadBuffer();
@@ -110,10 +111,22 @@ function playback(synthNotes){
 		var note = _this.notes[index];
 		note.osc.type = 'triangle';
 	}
-	this.sinWave = function(index) {
+	this.sineWave = function(index) {
 		var note = _this.notes[index];
 		note.osc.type = 'sine';
 	}
+	// this.lowpassFilter = function(index) {
+	// 	var note = _this.notes[index];
+	// 	note.filter.type = 'lowpass';
+	// }
+	// this.highpassFilter = function(index) {
+	// 	var note = _this.notes[index];
+	// 	note.filter.type = 'highpass';
+	// }
+	// this.peakingFilter = function(index) {
+	// 	var note = _this.notes[index];
+	// 	note.filter.type = 'peaking';
+	// }
 }
 
 

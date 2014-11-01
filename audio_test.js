@@ -8,6 +8,7 @@ note1.makeMeAnOsc();
 note2.makeMeAnOsc();
 note3.makeMeAnOsc();
 
+
 var synthArray = [
   new playback([note1]),
   new playback([note2]),
@@ -24,9 +25,6 @@ var sample2 = new Sample('audios/haha1.wav');
 var controller = Leap.loop({enableGestures: true}, function(frame) {
     handGestureNoises(frame);
     synthHands(frame);
-    console.log(frame.fingers.length);
-
-
 });
 
 
@@ -58,7 +56,7 @@ function synthHands(frame) {
             handYaw = hand.yaw(),
 
             freq = convertToRange(handPos[1], [0, 400], [200, 3000]),
-            gain = convertToRange(handPos[2], [-200, 300], [0, 0.5]);
+            gain = convertToRange(handPos[2], [-200, 300], [0, 1]);
 
         synthArray[i].updateGain(gain, 0);
         synthArray[i].updateFreq(freq, 0);
@@ -66,7 +64,7 @@ function synthHands(frame) {
         if (handPos[0] < 0) {
             synthArray[i].squareWave(0);
         } else {
-            synthArray[i].sinWave(0);
+            synthArray[i].sineWave(0);
         }
     }
 }
