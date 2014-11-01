@@ -17,8 +17,8 @@ var controller = new Leap.Controller();
 
 var note = new synthNote(200);
 note.makeMeAnOsc();
-var synth = new analyzeDest([note]);
-synth.play(0);
+var synth = new playback([note]);
+// synth.play(0);
 
 
 
@@ -69,7 +69,7 @@ controller.on('frame', function(frame) {
     for (var i = 0; i < frame.hands.length; i++) {
         // For each hand we define it
         var hand = frame.hands[i],
-            handPos = leapToScene(frame, hand.palmPosition),
+            handPos = hand.palmPosition,
             handPitch = hand.pitch(),
             handRoll = hand.roll(),
             handYaw = hand.yaw(),

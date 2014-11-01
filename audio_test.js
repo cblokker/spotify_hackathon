@@ -1,4 +1,7 @@
-// Creates our Leap Controller
+var controller = new Leap.Controller();
+var note = new synthNote(200);
+note.makeMeAnOsc();
+var synth = new playback([note]);
 
 
 function convertToRange(val, in_range, out_range) {
@@ -10,13 +13,11 @@ function convertToRange(val, in_range, out_range) {
 
 
 
-var controller = new Leap.Controller();
 
+var controller = new Leap.Controller();
 var note = new synthNote(200);
 note.makeMeAnOsc();
 var synth = new playback([note]);
-
-
 
 
 // Tells the controller what to do every time it sees a frame
@@ -34,17 +35,47 @@ controller.on('frame', function(frame) {
             handRoll = hand.roll(),
             handYaw = hand.yaw();
 
-        var freq = convertToRange(handPos[1], [0, 400], [200, 3000])
-        var gain = convertToRange(handPos[2], [-200, 300], [1, 0])
+        var freq = convertToRange(handPos[1], [0, 400], [200, 3000]);
+        var gain = convertToRange(handPos[2], [-200, 300], [1, 0]);
 
-        console.log(handPos[2]);
+        console.log(handPos[0]);
 
         synth.updateGain(gain, 0);
         synth.updateFreq(freq, 0);
+
+        if (handPos[0] < 0) {
+            synth.squareWave(0);
+        } else {
+            synth.sinWave(0);
+        }
     }
 });
 
+var sample = new Sample('audios/haha1.wav');
+sample.loadBuffer();
 
+
+var controller = Leap.loop({enableGestures: true}, function(frame){
+  if(frame.valid && frame.gestures.length > 0){
+    frame.gestures.forEach(function(gesture){
+        switch (gesture.type) {
+            case "circle":
+                console.log("Circle Gesture");
+                break;
+            case "keyTap":
+                console.log("Key Tap Gesture");
+                break;
+            case "screenTap":
+                console.log("Screen Tap Gesture");
+                break;
+            case "swipe":
+                console.log('swipe');
+                sample.play(0);
+                break;
+        }
+    });
+  }
+});
 
 
 
