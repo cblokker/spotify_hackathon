@@ -5,5 +5,33 @@ canvas {
     background: black;
 }
 #connect-leap {
-	display: none !important;
+    display: none !important;
+}
+#fog {
+    z-index: 9;
+    position: relative;
+    width: 200%;
+    left: 0;
+    -webkit-animation: blurry 3s infinite alternate ease;
+}
+#fogHolder {
+    left: 0;
+    position: absolute;   
+    -webkit-animation: slide 10s infinite alternate;
+}
+@-webkit-keyframes blurry {
+    0% {
+        -webkit-filter: blur(40px);
+    }
+    100% {
+        -webkit-filter: blur(80px);
+    }
+}
+@-webkit-keyframes slide {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: -50%;
+    }
 }
