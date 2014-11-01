@@ -34,7 +34,7 @@ function synthNote(freq) {
 }
 
 
-function analyzeDest(synthNotes){
+function playback(synthNotes){
 	
 	this.notes = synthNotes;
 	this.destination = AudioContext.destination
