@@ -18,7 +18,12 @@ var synthArray = [
 
 var sample1 = new Sample('audios/Laugh-Evil1.mp3');
 var sample2 = new Sample('audios/haha1.wav');
-
+var thunderBackdrop = new Sample('audios/thunder.mp3');
+thunderBackdrop.loadBuffer(function(_this){
+    console.log('finish loading backdrop');
+    _this.play(0);
+});
+thunderBackdrop.setLoop(true);
 sample1.loadBuffer();
 sample2.loadBuffer();
 

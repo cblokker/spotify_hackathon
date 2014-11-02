@@ -3,6 +3,7 @@ function Sample(urlPath, name) {
     this.name = name;
     this.decodedBuffer = [];
     this.playing = false;
+    this.loop = false;
 }
 
 
@@ -15,6 +16,11 @@ Sample.prototype = {
     //      _this.prepOneSP( _this.samplePatterns[i]) 
     //  }
     // },
+    setLoop : function(loop) {
+        this.loop = loop; 
+    },
+    
+    // callback is optional
     loadBuffer : function(callback) {
 
         var _this = this; 
@@ -27,7 +33,7 @@ Sample.prototype = {
             AudioContext.decodeAudioData(request.response, function(buffer) {
             _this.decodedBuffer = buffer;
             if (callback != undefined) {
-                callback();
+                callback(_this);
             }
         }, function(){ console.log('oh shit')});
       }
@@ -41,6 +47,9 @@ Sample.prototype = {
         } else {
             var source = AudioContext.createBufferSource();
             _this.playing = true;
+            if (_this.loop != null ) {
+                source.loop = _this.loop;
+            }
             source.buffer = this.decodedBuffer;                    
             source.connect(AudioContext.destination);       
             source.start(when);
