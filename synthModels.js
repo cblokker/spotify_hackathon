@@ -50,10 +50,10 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 	verbImpulse = new Sample('audios/stone.wav');
-	verbImpulse.loadBuffer();
-  setTimeout(function() {
-      convolver.buffer = verbImpulse.decodedBuffer;
-  }, 1000);
+	verbImpulse.loadBuffer(function() {
+		console.log("setting convolver buffer");
+		convolver.buffer = verbImpulse.decodedBuffer;
+	});
 
 
 

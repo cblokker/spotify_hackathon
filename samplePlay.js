@@ -15,7 +15,7 @@ Sample.prototype = {
     //      _this.prepOneSP( _this.samplePatterns[i]) 
     //  }
     // },
-    loadBuffer : function() {
+    loadBuffer : function(callback) {
 
         var _this = this; 
         var request = new XMLHttpRequest();
@@ -26,6 +26,9 @@ Sample.prototype = {
         request.onload = function() {
             AudioContext.decodeAudioData(request.response, function(buffer) {
             _this.decodedBuffer = buffer;
+            if (callback != undefined) {
+                callback();
+            }
         }, function(){ console.log('oh shit')});
       }
       request.send();
