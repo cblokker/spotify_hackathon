@@ -16,8 +16,11 @@ var synthArray = [
     new playback([note3])
 ]
 
-var sample = new Sample('/audios/Laugh-Evil1.mp3');
-sample.loadBuffer();
+var sample1 = new Sample('audios/Laugh-Evil1.mp3');
+var sample2 = new Sample('audios/haha1.wav');
+
+sample1.loadBuffer();
+sample2.loadBuffer();
 
 function convertToRange(val, in_range, out_range) {
     // ranges are 2 value arrays, in min + max, out min + max
@@ -32,6 +35,8 @@ function synthHands(frame) {
     if (frame.hands.length == 0) {
         synthArray[0].stop(0);
         synthArray[1].stop(0);
+    } else if (frame.hands.length == 1) {
+        synthArray[0].play(0);
     } else {
         synthArray[0].play(0);
         synthArray[1].play(0);
@@ -45,7 +50,7 @@ function synthHands(frame) {
             handYaw = hand.yaw(),
 
             freq = convertToRange(handPos[1], [0, 400], [200, 3000]),
-            gain = convertToRange(handPos[2], [-200, 300], [1, 0]);
+            gain = convertToRange(handPos[2], [-200, 300], [0, 0.18]);
 
         synthArray[i].updateGain(gain, 0);
         synthArray[i].updateFreq(freq, 0);
@@ -64,6 +69,7 @@ function handGestureNoises(frame) {
             switch (gesture.type) {
                 case "circle":
                     console.log("Circle Gesture");
+                    sample2.play(0);
                     break;
                 case "keyTap":
                     console.log("Key Tap Gesture");
@@ -73,7 +79,7 @@ function handGestureNoises(frame) {
                     break;
                 case "swipe":
                     console.log("Swipe Gesture");
-                    sample.play(0);
+                    sample1.play(0);
                     break;
             }
         });
