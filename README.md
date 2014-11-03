@@ -11,7 +11,8 @@ Each hand controls a synthesized sound, pitch is controlled via vertical motion 
 
 The hands are visualized using [three.js](http://threejs.org/), built on the [WebGL](http://www.chromeexperiments.com/webgl/) library. The browser's interface with the Leap is courtesy of [Leap's Javascript SDK](https://developer.leapmotion.com/leapjs/welcome). 
 
-To run the app, download the [leapjs library for node](https://www.npmjs.org/package/leapjs), launch a local browser (such as [MAMP](http://www.mamp.info/en/) which we used), and have it serve up the index page. 
+To run the app locally, download the [leapjs library for node](https://www.npmjs.org/package/leapjs), launch a local browser (such as [MAMP](http://www.mamp.info/en/) which we used), and have it serve up the index page. 
+Or, install your leap and visit the gh project page [here](http://cblokker.github.io/spotify_hackathon)
 
 Voila.
 Spook your friends and neighbors!
