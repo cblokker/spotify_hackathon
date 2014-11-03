@@ -7,7 +7,7 @@ The application uses the [Leap](https://www.leapmotion.com/) for the user to con
 
 Each hand controls a synthesized sound, pitch is controlled via vertical motion and volume by motion towards and away from the screen. Swipes and circle motions trigger disturbing laughs. Audio is managed with the Web Audio API. 
 
-The hands are visualized using the [WebGL](http://www.chromeexperiments.com/webgl/) library. The browser's interface with the Leap is courtesy of [Leap's Javascript SDK](https://developer.leapmotion.com/leapjs/welcome). 
+The hands are visualized using [three.js](http://threejs.org/), built on the [WebGL](http://www.chromeexperiments.com/webgl/) library. The browser's interface with the Leap is courtesy of [Leap's Javascript SDK](https://developer.leapmotion.com/leapjs/welcome). 
 
 To run the app, download the [leapjs library for node](https://www.npmjs.org/package/leapjs), launch a local browser (such as [MAMP](http://www.mamp.info/en/) which we used), and have it serve up the index page. 
 
