@@ -123,9 +123,6 @@ var camera = controller.plugins.riggedHand.camera;
 camera.position.set(0, 20, -25);
 camera.lookAt(new THREE.Vector3(0, 3, 0));
 
-
-controller.connect();
-
 welcomeSequence();
 
 function autoPlay() {
@@ -149,6 +146,8 @@ function welcomeSequence() {
         $('#salutations').fadeOut(200);
         $('#fogHolder').fadeIn(600);
         $('canvas').fadeIn(800);
+        controller.connect();
+
         if (!controller.connected() ) {
             console.log('start the tape');
             autoPlay();
