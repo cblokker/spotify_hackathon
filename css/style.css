@@ -1,6 +1,7 @@
 body {
     background: black;
 }
+
 canvas {
     background: black;
 }
@@ -19,6 +20,20 @@ canvas {
     position: absolute;   
     -webkit-animation: slide 10s infinite alternate;
 }
+
+#salutations {
+    z-index: 20;
+    color: white;
+    font-family: 'Nosifer', cursive;
+    margin: 5% auto;
+    padding: 1em;
+    text-align: center;
+}
+
+#salutations a {
+    color: red;
+}
+
 @-webkit-keyframes blurry {
     0% {
         -webkit-filter: blur(40px);

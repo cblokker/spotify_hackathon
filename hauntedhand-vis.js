@@ -124,15 +124,9 @@ camera.position.set(0, 20, -25);
 camera.lookAt(new THREE.Vector3(0, 3, 0));
 
 
-// controller.connect()
+controller.connect();
 
-// if (controller.connected() ) {
-//     console.log('connected')
-// } else {
-//     console.log('nope')
-// }
-
-
+welcomeSequence();
 
 function autoPlay() {
     controller.use('playback', {
@@ -143,4 +137,28 @@ function autoPlay() {
         pauseOnHand: true
     });
 }
+
+
+function welcomeSequence() {
+    $('canvas').hide();
+    $('#fogHolder').hide()
+    $('#salutations').hide();
+    $('#salutations').fadeIn(2500);
+    $('#takeMeIn').click( function(){
+        sample1.play(0)
+        $('#salutations').fadeOut(200);
+        $('#fogHolder').fadeIn(600);
+        $('canvas').fadeIn(800);
+        if (!controller.connected() ) {
+            console.log('start the tape');
+            autoPlay();
+        }
+    })
+}
+
+
+
+
+
+
 
