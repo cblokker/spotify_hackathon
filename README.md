@@ -1,6 +1,8 @@
 Haunted Hands!
 =================
 
+[Haunted Hands is ALIVE!](http://cblokker.github.io/spotify_hackathon)
+
 Haunted Hands is an app developed at the [2014 Spotify Haunted Hackathon](http://www.eventbrite.com/e/haunted-hackathon-at-spotify-tickets-13663444731?utm_source=eb_email&utm_medium=email&utm_campaign=email_attendees&utm_term=event). 
 
 The application uses the [Leap](https://www.leapmotion.com/) for the user to control the visualized hands in the browser, and generate SPOOOOOKY SOUNDS!!! 
