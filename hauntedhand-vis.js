@@ -95,13 +95,6 @@ function handGestureNoises(frame) {
 // To use a plugins, we call `.use` on the controller with options for the plugin.
 // See js.leapmotion.com/plugins for more info
 
-// controller.use('playback', {
-//     // This is a compressed JSON file of preprecorded frame data
-//     recording: 'playback-recording.lz',
-//     // How long, in ms, between repeating the recording.
-//     timeBetweenLoops: 1000,
-//     pauseOnHand: true
-// });
 
 controller.on('riggedHand.meshAdded', function(handMesh, leapHand) {
     handMesh.material.opacity = 1;
@@ -130,4 +123,41 @@ var camera = controller.plugins.riggedHand.camera;
 camera.position.set(0, 20, -25);
 camera.lookAt(new THREE.Vector3(0, 3, 0));
 
-controller.connect();
+welcomeSequence();
+
+function autoPlay() {
+    controller.use('playback', {
+        // This is a compressed JSON file of preprecorded frame data
+        recording: 'playback-recording.lz',
+        // How long, in ms, between repeating the recording.
+        timeBetweenLoops: 1000,
+        pauseOnHand: true
+    });
+}
+
+
+function welcomeSequence() {
+    $('canvas').hide();
+    $('#fogHolder').hide()
+    $('#salutations').hide();
+    $('#salutations').fadeIn(2500);
+    $('#takeMeIn').click( function(){
+        sample1.play(0)
+        $('#salutations').fadeOut(200);
+        $('#fogHolder').fadeIn(600);
+        $('canvas').fadeIn(800);
+        controller.connect();
+
+        if (!controller.connected() ) {
+            console.log('start the tape');
+            autoPlay();
+        }
+    })
+}
+
+
+
+
+
+
+
